@@ -1,4 +1,4 @@
-{
+export default {
    "type": "postgres",
    "host": "localhost",
    "port": 5432,
@@ -8,17 +8,17 @@
    "synchronize": true,
    "logging": false,
    "entities": [
-      "src/entity/**/*.ts"
+      "src/entities/**/*.ts"
    ],
    "migrations": [
-      "src/migration/**/*.ts"
+      "src/migrations/**/*.ts"
    ],
    "subscribers": [
       "src/subscriber/**/*.ts"
    ],
    "cli": {
-      "entitiesDir": "src/entity",
-      "migrationsDir": "src/migration",
+      "entitiesDir": "src/entities",
+      "migrationsDir": "src/migrations",
       "subscribersDir": "src/subscriber"
    }
 }
