@@ -1,11 +1,12 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import { Request } from 'express';
 import { UserTypes, UserRepository } from '../../repositories';
 import config from '../../configs';
 
-const loginUserService = async (data) => {
+const loginUserService = async (data: Request) => {
   const { email, password } = data;
-  const user: UserTypes = await new UserRepository().findOneUser(email);
+  const user: UserTypes = await new UserRepository().findUserPassword({ email });
 
   if (!user) {
     return undefined;

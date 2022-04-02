@@ -8,7 +8,7 @@ const loginUserController = async (
   const responseData = await loginUserService(req.body);
 
   if (!responseData) {
-    return res.status(401).json({ message: 'Wrong email/password' })
+    return res.status(401).json({ message: 'Wrong email/password' });
   }
 
   return res.status(200).json(responseData);

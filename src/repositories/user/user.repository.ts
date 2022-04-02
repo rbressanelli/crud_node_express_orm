@@ -14,6 +14,8 @@ class UserRepository implements UserRepoTypes {
   findUsers = async () => await this.ormRepository.find();
 
   findOneUser = async (data: string) => await this.ormRepository.findOne({ email: data });
+
+  findUserPassword = async (data) => await this.ormRepository.createQueryBuilder(data).addSelect('password').getOne();
 }
 
 export { UserRepository, UserTypes };

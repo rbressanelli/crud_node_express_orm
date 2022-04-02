@@ -5,6 +5,7 @@ declare global {
     interface Request {
       validated: UserTypes,
       email: string
+      password: string
     }
   }
 }
