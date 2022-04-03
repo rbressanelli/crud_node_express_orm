@@ -11,11 +11,12 @@ const loginUserService = async (data: Request) => {
   if (!user) {
     return undefined;
   }
+  const { uuid } = user;
   const hashedPassword: boolean = await bcrypt.compare(password, user.password);
   if (!hashedPassword) {
     return undefined;
   }
-  const token: string = jwt.sign({ email }, config.secretKey, {
+  const token: string = jwt.sign({ email, uuid }, config.secretKey, {
     expiresIn: config.expiresIn,
   });
   return { token };
