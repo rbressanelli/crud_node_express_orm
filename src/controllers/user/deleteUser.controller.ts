@@ -6,18 +6,19 @@ const deleteUserController = async (
   res: Response,
 ): Promise<Response | void> => {
   let deletedUser: undefined | object;
-  console.log(req.isAdm)
-  if (req.isAdm) {
-    deletedUser = await deleteAnyUserService(req);
-  } else {
-    deletedUser = await deleteSelfUserService(req);
-    if (!deletedUser) {
-      return res.status(401).json({ message: 'Missing admin permissions' });
+  try {
+    if (req.isAdm) {
+      deletedUser = await deleteAnyUserService(req);
+    } else {
+      deletedUser = await deleteSelfUserService(req);
+      if (!deletedUser) {
+        return res.status(401).json({ message: 'Missing admin permissions' });
+      }
     }
+    return res.status(200).json({ message: 'User deleted with success' });
+  } catch (error) {
+      return res.status(400).json({ message: 'Bad request' });
   }
-  console.log(req.isAdm)
-
-  return res.status(200).json({ message: 'User deleted with success' });
 };
 
 export default deleteUserController;

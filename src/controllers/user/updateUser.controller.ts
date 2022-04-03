@@ -6,15 +6,19 @@ const updateUserController = async (
   res: Response,
 ): Promise<Response | void> => {
   let updateUser: undefined | object;
-  if (req.isAdm) {
-    updateUser = await updateAnyUserService(req);
-  } else {
-    updateUser = await updateSelfUserService(req);
-    if (!updateUser) {
-      return res.status(401).json({ message: 'Missing admin permissions' });
+  try {
+    if (req.isAdm) {
+      updateUser = await updateAnyUserService(req);
+    } else {
+      updateUser = await updateSelfUserService(req);
+      if (!updateUser) {
+        return res.status(401).json({ message: 'Missing admin permissions' });
+      }
     }
+    return res.status(200).json(updateUser);
+  } catch (error) {
+      return res.status(400).json({ message: 'Bad request' });
   }
-  return res.status(200).json(updateUser);
 };
 
 export default updateUserController;
