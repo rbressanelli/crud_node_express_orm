@@ -13,19 +13,19 @@ class UserRepository implements UserRepoTypes {
 
   findUsers = async () => await this.ormRepository.find();
 
-  findOneUser = async (data) => await this.ormRepository.findOne({ email: data });
+  findOneUser = async (data: string) => await this.ormRepository.findOne({ email: data });
 
-  findUserPassword = async (data) => await this.ormRepository.createQueryBuilder(data).addSelect('password').addSelect('email').andWhere(data)
+  findUserPassword = async (data: any) => await this.ormRepository.createQueryBuilder(data).addSelect('password').addSelect('email').andWhere(data)
 .getOne();
 
   findProfileUser = async (data: string) => await this.ormRepository.findOne({ uuid: data });
 
-  updateUser = async (data, id) => await
+  updateUser = async (data: any, id: string) => await
   this.ormRepository.createQueryBuilder().update(User).set(data).where({ uuid: id })
 .returning('*')
   .execute();
 
-  deleteUser = async (id) => await
+  deleteUser = async (id: string) => await
   this.ormRepository.createQueryBuilder().delete().where({ uuid: id }).execute();
 }
 

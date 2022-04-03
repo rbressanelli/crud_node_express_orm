@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { TokenTypes } from './interfaces';
+import TokenTypes from './interfaces';
 
 dotenv.config();
 
