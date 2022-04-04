@@ -15,9 +15,9 @@ interface UserRepoTypes {
   saveUser: (user: UserTypes) => Promise<UserTypes>;
   findUsers: () => Promise<UserTypes[]>;
   findOneUser: (data: string) => Promise<UserTypes | undefined>;
-  findUserPassword: (data) => Promise<UserTypes | undefined>;
+  findUserPassword: (data: string) => Promise<UserTypes | undefined>;
   findProfileUser: (data: string) => Promise<UserTypes | undefined>;
-  updateUser:(data: any, id: string) => any;
+  updateUser:(data: any, id: string) => Promise<Object>;
   deleteUser: (id: string) => Promise<DeleteResult>
  }
 

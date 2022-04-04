@@ -17,7 +17,7 @@ const updateUserController = async (
     }
     return res.status(200).json(updateUser);
   } catch (error) {
-      return res.status(400).json({ message: 'Bad request' });
+      return res.status(400).json({ message: 'User uuid mismatch' });
   }
 };
 
